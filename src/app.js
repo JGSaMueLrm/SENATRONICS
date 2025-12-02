@@ -21,11 +21,11 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 
 // RUTAS PROTEGIDAS
-app.use("/u", authMiddleware, userRoutes);
+app.use("/usuarios", userRoutes);
 app.use("/categorias", authMiddleware, categoriaRoutes);
 app.use("/proveedores", authMiddleware, proveedorRoutes);
 app.use("/almacenes", authMiddleware, almacenRoutes);
-app.use("/productos", authMiddleware, productoRoutes);
+app.use("/productos", productoRoutes);
 app.use("/movimientos", authMiddleware, movimientoRoutes);
 
 // CONEXIÓN Y SINCRONIZACIÓN DE BASE DE DATOS

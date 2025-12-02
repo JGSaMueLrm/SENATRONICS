@@ -1,10 +1,18 @@
 const express = require("express");
 const controller = require("../controllers/user.controller");
+const authMiddleware = require("../middleware/authentification");
 const router = express.Router();
 
-router.get("/users/", controller.listUsers);
-router.post("/users/new/", controller.createUser);
-router.put("/users/:id", controller.updateUser);
-router.delete("/users/:id", controller.destroidUser);
+// GET /usuarios - Público
+router.get("/", controller.listUsers);
+
+// POST /usuarios - Público (Registro)
+router.post("/", controller.createUser);
+
+// PUT /usuarios/:id - Protegido
+router.put("/:id", authMiddleware, controller.updateUser);
+
+// DELETE /usuarios/:id - Protegido
+router.delete("/:id", authMiddleware, controller.destroidUser);
 
 module.exports = router;
